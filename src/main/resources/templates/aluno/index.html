@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal da Escola - Alunos</title>
+    <style>
+        table { border-collapse: collapse; width: 80%; }
+        th, td { border: 1px solid #ccc; padding: 8px; }
+        th { background: #f5f5f5; }
+        .actions { display: flex; gap: 8px; }
+        .search { margin: 12px 0; }
+    </style>
+</head>
+<body>
+    <h1>Alunos</h1>
+
+    <div class="search">
+        <form th:action="@{/aluno}" method="get">
+            <input type="text" name="nome" th:value="${filtro}" placeholder="Buscar por nome" />
+            <button type="submit">Buscar</button>
+            <a th:href="@{/aluno}">Limpar</a>
+        </form>
+    </div>
+
+    <div th:if="${sucesso}">
+        <p th:text="${sucesso}" style="color:green"></p>
+    </div>
+    <div th:if="${erro}">
+        <p th:text="${erro}" style="color:red"></p>
+    </div>
+
+    <a th:href="@{/aluno/novo}">Novo Aluno</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="a : ${alunos}">
+                <td th:text="${a.id}">1</td>
+                <td th:text="${a.nome}">Nome</td>
+                <td th:text="${a.cpf}">CPF</td>
+                <td class="actions">
+                    <a th:href="@{|/aluno/editar/${a.id}|}">Editar</a>
+                    <form th:action="@{|/aluno/excluir/${a.id}|}" method="post" onsubmit="return confirm('Confirma exclusão?')">
+                        <button type="submit">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Escola</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            border-top: 5px solid rgb(0, 128, 0); 
+        }
+        h1 { color: #333; }
+        p { color: #666; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+    <h1>Escola</h1>
+    <p>Projeto: <strong>Portal da Escola</strong></p>
+    
+    <p>Olá <span th:text="${attrNome}">Nome Padrão</span></p>
+    
+    <p>CPF: <span th:text="${attrCpf}"></span></p>
+    <p>Número de mátricula: <span th:text="${attrId}"></span></p>
+    <hr>
+    <small>xaxaxa</small>
+</div>
+
+</body>
+</html>

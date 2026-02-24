@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Aluno</title>
+    <style>
+        form { max-width: 400px; }
+        label { display:block; margin-top:8px; }
+        input[type="text"] { width:100%; padding:6px; }
+    </style>
+</head>
+<body>
+    <h1 th:text="${aluno.id} == null ? 'Novo Aluno' : 'Editar Aluno'"></h1>
+
+    <div th:if="${sucesso}">
+        <p th:text="${sucesso}" style="color:green"></p>
+    </div>
+    <div th:if="${erro}">
+        <p th:text="${erro}" style="color:red"></p>
+    </div>
+
+    <form th:action="@{/aluno}" th:object="${aluno}" method="post">
+        <input type="hidden" th:field="*{id}" />
+
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" th:field="*{nome}" placeholder="Nome completo" required />
+
+        <label for="cpf">CPF</label>
+        <input type="text" id="cpf" th:field="*{cpf}" placeholder="000.000.000-00" required />
+
+        <div style="margin-top:12px">
+            <button type="submit">Salvar</button>
+            <a th:href="@{/aluno}">Cancelar</a>
+        </div>
+    </form>
+</body>
+</html>
